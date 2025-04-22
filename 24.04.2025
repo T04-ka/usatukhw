@@ -1,0 +1,16 @@
+f = open("p9.txt", "r")
+count = 0
+for s in f.readlines():
+    nums = list(map(int, s.split()))
+    from collections import defaultdict
+    dct = defaultdict(int)
+    for num in nums:
+        dct[num] += 1
+    repeating_numbers = [num for num, cnt in dct.items() if cnt > 1]
+    if len(repeating_numbers) > 0:
+        sr_1 = (max(nums) + min(nums)) / 2
+        sr_2 = sum(repeating_numbers) / len(repeating_numbers)
+        if sr_1 > sr_2:
+            count += 1
+print(count)
+f.close()
