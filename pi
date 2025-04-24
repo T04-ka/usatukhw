@@ -1,0 +1,22 @@
+import math
+
+def calculate_pi_approximation():
+    n = 6
+    side_length = 1.0 
+    
+    print("| Кол-во сторон | Длина стороны | Периметр | Приближение для π | Относительная погрешность |")
+    print("|---|---|---|---|---|")
+    
+    while n <= 1000000000:
+        perimeter = n * side_length
+        pi_approx = perimeter / 2  
+        error = abs(pi_approx - math.pi) / math.pi * 100
+        
+        print(f"| {n} | {side_length:.15f} | {perimeter:.15f} | {pi_approx:.15f} | {error:.15f}% |")
+        
+        
+        side_length = math.sqrt(2 - math.sqrt(4 - side_length**2))
+        n *= 2
+
+
+calculate_pi_approximation()
