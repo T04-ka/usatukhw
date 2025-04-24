@@ -1,15 +1,23 @@
 f = open("p9.txt", "r")
 count = 0
 sr_1 = 0
+fl=1
 sr_2 = 0
 for s in f.readlines():
     nums = list(map(int,s.split()))
     dct = {num if nums.count(num)>1 else 0 : nums.count(num) for num in nums}
-    keys = list(dct.keys())
-    del(keys[0])
+    
+s    keys = list(dct.keys())
+    
+    if 1 == fl:
+        print(dct)
+        fl=2
     if len(keys)>0:
         sr_1 = (max(nums)+min(nums))/2
-        sr_2 = sum(key*dct[key] for key in keys)/sum(dct[key] for key in keys)
+        try:
+            sr_2 = sum(key*dct[key] for key in keys)/(sum(dct[key] for key in keys if dct[key]>1))
+        except:
+            continue
         if sr_1>sr_2:
             count += 1
     
