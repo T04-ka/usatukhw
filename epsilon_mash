@@ -1,0 +1,23 @@
+def find_machine_epsilon():
+    epsilon = 1.0
+    
+    while 1.0 + epsilon != 1.0:
+        epsilon_prev = epsilon
+        epsilon /= 2
+    print(f"Порядок: {epsilon}")
+    
+    
+    left = epsilon
+    right = epsilon_prev
+    
+    for _ in range(100):  # Достаточно итераций для точности
+        mid = (left + right) / 2
+        if 1.0 + mid != 1.0:
+            left = mid
+        else:
+            right = mid
+    
+    print(f"Околоточное значение: {left:.4e}")
+
+
+find_machine_epsilon()
